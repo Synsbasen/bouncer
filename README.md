@@ -26,7 +26,7 @@ $ rails g bouncer:install
 ```
 
 This does the following:
-- **Creates an initializer (config/initializers/bouncer.rb):** In here you need to tell Bouncer the name of our user class. Make sure to pass it as a string. Furthermore, you need to provide your credentials for Auth0. Save these credentials in an .env file (or using Rails credentials) for your own sake.
+- **Creates an initializer (config/initializers/bouncer.rb):** In here you need to tell Bouncer the name of your user class. Make sure to pass it as a string. Furthermore, you need to provide your credentials for Auth0. Save these credentials in an .env file (or using Rails credentials) for your own sake.
 - **Mounts the Bouncer::Engine in routes (config/routes.rb):** No need to do anything futher here.
 - **Includes the Bouncer::Authentication controller concern in your ApplicationController:** No need to do anything here, unless you don't have an ApplicationController.
 
