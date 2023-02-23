@@ -3,7 +3,8 @@ module Bouncer
     class InstallGenerator < Rails::Generators::Base
       namespace "bouncer:install"
 
-      def create_initializer_file
+      def call
+        # Create initializer file with default configuration options
         initializer "bouncer.rb" do
           <<-TEXT
           Bouncer.auth0_client_id = 'YOUR_CLIENT_ID'
@@ -14,6 +15,11 @@ module Bouncer
             scope: 'openid profile email',
           }
           TEXT
+        end
+
+        # Inject include Bouncer::Authentication in ApplicationController
+        inject_into_class "app/controllers/application_controller.rb", "ApplicationController" do
+          "  include Bouncer::Authentication\n"
         end
       end
     end
