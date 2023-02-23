@@ -26,7 +26,7 @@ module Bouncer
   private
 
   def self.all_required_columns_present?
-    if missing_columns = REQUIRED_COLUMNS.difference(user_class.column_names) > 0
+    if missing_columns = REQUIRED_COLUMNS.difference(user_class.column_names).length > 0
       raise "Bouncer is missing the following columns: #{missing_columns.join(", ")}"
     else
       true
