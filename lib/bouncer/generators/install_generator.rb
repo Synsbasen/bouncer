@@ -18,6 +18,9 @@ module Bouncer
           TEXT
         end
 
+        # Mount Bouncer::Engine in routes.rb
+        route "mount Bouncer::Engine => '/'"
+
         # Inject include Bouncer::Authentication in ApplicationController
         inject_into_class "app/controllers/application_controller.rb", "ApplicationController" do
           "  include Bouncer::Authentication\n"
