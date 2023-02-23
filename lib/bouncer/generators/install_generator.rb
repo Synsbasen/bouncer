@@ -7,6 +7,7 @@ module Bouncer
         # Create initializer file with default configuration options
         initializer "bouncer.rb" do
           <<-TEXT
+          Bouncer.user_class = 'User'
           Bouncer.auth0_client_id = 'YOUR_CLIENT_ID'
           Bouncer.auth0_client_secret = 'YOUR_CLIENT_SECRET'
           Bouncer.auth0_domain = 'YOUR_DOMAIN'
