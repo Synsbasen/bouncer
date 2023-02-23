@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  mount Bouncer::Engine => "/bouncer"
+  mount Bouncer::Engine => '/'
 end
