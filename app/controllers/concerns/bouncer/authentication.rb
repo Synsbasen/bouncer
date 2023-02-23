@@ -12,15 +12,14 @@ module Bouncer
     def sign_in(user)
       return false unless user && user.persisted?
 
-      user.update({
-        sign_in_count: user.sign_in_count + 1,
-        last_sign_in_at: Time.now,
-        last_sign_in_ip: request.remote_ip,
-      })
-      session[:user_id] = user.id
+      Bouncer::Event::SignIn.create(user: user, ip: request.remote_ip)
+
+      session[:bouncer_user_id] = user.id
     end
 
     def sign_out
+      Bouncer::Event::SignOut.create(user: current_user, ip: request.remote_ip) if current_user.present?
+
       reset_session
     end
 
@@ -31,7 +30,7 @@ module Bouncer
     private
 
     def current_user
-      Current.user ||= session[:user_id] && User.find_by_id(session[:user_id])
+      Current.user ||= session[:bouncer_user_id] && User.find_by_id(session[:bouncer_user_id])
     end
 
     def user_signed_in?

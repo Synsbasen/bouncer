@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_02_23_213920) do
     t.string "type"
     t.string "user_type"
     t.integer "user_id"
+    t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_type", "user_id"], name: "index_bouncer_events_on_user"
