@@ -7,13 +7,13 @@ module Bouncer
         # Create initializer file with default configuration options
         initializer "bouncer.rb" do
           <<-TEXT
-          Bouncer.user_class = 'User'
-          Bouncer.auth0_client_id = 'YOUR_CLIENT_ID'
-          Bouncer.auth0_client_secret = 'YOUR_CLIENT_SECRET'
-          Bouncer.auth0_domain = 'YOUR_DOMAIN'
+          Bouncer.user_class = "User"
+          Bouncer.auth0_client_id = "YOUR_CLIENT_ID"
+          Bouncer.auth0_client_secret = "YOUR_CLIENT_SECRET"
+          Bouncer.auth0_domain = "YOUR_DOMAIN"
           Bouncer.auth0_authorize_params = {
-            ui_locales: 'en',
-            scope: 'openid profile email',
+            ui_locales: "en",
+            scope: "openid profile email",
           }
           TEXT
         end
