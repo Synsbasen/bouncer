@@ -25,7 +25,7 @@ module Bouncer
     end
 
     def authenticate_user!
-      redirect_to '/' unless user_signed_in?
+      redirect_to "/" unless user_signed_in?
     end
 
     private
@@ -40,7 +40,7 @@ module Bouncer
 
     def store_latest_path
       return unless request.format.html? && request.get?
-      return if controller_name == 'auth0'
+      return if controller_name == "auth0"
 
       session[:bouncer_latest_path] = request.fullpath
     end
