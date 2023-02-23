@@ -10,6 +10,9 @@ Gem::Specification.new do |spec|
   spec.description = "Description of Bouncer."
   spec.license     = "MIT"
 
+  spec.add_runtime_dependency 'omniauth-auth0', '~> 3.0'
+  spec.add_runtime_dependency 'omniauth-rails_csrf_protection', '~> 1.0'
+
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
