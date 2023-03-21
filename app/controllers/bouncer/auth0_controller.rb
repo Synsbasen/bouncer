@@ -55,9 +55,9 @@ module Bouncer
       Bouncer.user_class.where(uid: provider_data.uid, provider: provider).first_or_initialize do |user|
         raw_info = provider_data.extra.raw_info
 
-        user.first_name = raw_info.given_name || ""
-        user.last_name = raw_info.family_name || ""
-        user.email = raw_info.email
+        user.first_name = raw_info.given_name&.strip || ""
+        user.last_name = raw_info.family_name&.strip || ""
+        user.email = raw_info.email.strip
         user.accept_toc = true
       end
     end
