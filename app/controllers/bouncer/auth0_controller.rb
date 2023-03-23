@@ -17,7 +17,7 @@ module Bouncer
       # Store the user information in the session and sign in the suer
       sign_in user
 
-      redirect_to session[:bouncer_latest_path] || "/"
+      redirect_to Bouncer.redirect_path || session[:bouncer_latest_path] || "/"
     rescue ActiveRecord::RecordInvalid => e
       flash[:error] = e.message
       redirect_to "/"

@@ -5,6 +5,7 @@ module Bouncer
   REQUIRED_COLUMNS = %w[uid provider first_name last_name email].freeze
 
   mattr_accessor :user_class,
+                 :redirect_path,
                  :auth0_client_id,
                  :auth0_client_secret,
                  :auth0_domain,
