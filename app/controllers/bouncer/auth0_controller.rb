@@ -19,6 +19,7 @@ module Bouncer
 
       redirect_to Bouncer.redirect_path || session[:bouncer_latest_path] || "/"
     rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.error "Bouncer error: #{user.errors.full_messages.to_sentence}"
       flash[:error] = e.message
       redirect_to "/"
     end
