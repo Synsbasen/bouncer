@@ -3,8 +3,8 @@ module Bouncer
     extend ActiveSupport::Concern
 
     included do
-      helper_method :current_user
-      helper_method :user_signed_in?
+      helper_method "current_#{Bouncer.user_class.to_s.underscore}".to_sym
+      helper_method "#{Bouncer.user_class.to_s.underscore}_signed_in?".to_sym
 
       after_action :store_latest_path
     end
@@ -18,7 +18,7 @@ module Bouncer
     end
 
     def sign_out
-      Bouncer::Event::SignOut.create(user: current_user, ip: request.remote_ip) if current_user.present?
+      Bouncer::Event::SignOut.create(user: bouncer_current_user, ip: request.remote_ip) if bouncer_current_user.present?
 
       reset_session
     end
@@ -29,12 +29,13 @@ module Bouncer
 
     private
 
-    def current_user
-      Current.user ||= session[:bouncer_user_id] && User.find_by_id(session[:bouncer_user_id])
+    define_method "current_#{Bouncer.user_class.to_s.underscore}".to_sym do
+      user_id = session[:bouncer_user_id]
+      eval "Current.#{Bouncer.user_class.to_s.underscore} ||= user_id && Bouncer.user_class.find_by_id(user_id)"
     end
 
-    def user_signed_in?
-      current_user.present?
+    define_method "#{Bouncer.user_class.to_s.underscore}_signed_in?".to_sym do
+      bouncer_current_user.present?
     end
 
     def store_latest_path
@@ -42,6 +43,12 @@ module Bouncer
       return if controller_name == "auth0"
 
       session[:bouncer_latest_path] = request.fullpath
+    end
+
+    protected
+
+    def bouncer_current_user
+      send("current_#{Bouncer.user_class.to_s.underscore}")
     end
   end
 end
