@@ -23,15 +23,14 @@ module Bouncer
       reset_session
     end
 
-    def authenticate_user!
-      redirect_to "/" unless user_signed_in?
+    define_method "authenticate_#{Bouncer.user_class.to_s.underscore}!".to_sym do
+      redirect_to "/" unless bouncer_user_signed_in?
     end
 
     private
 
     define_method "current_#{Bouncer.user_class.to_s.underscore}".to_sym do
-      user_id = session[:bouncer_user_id]
-      eval "Current.#{Bouncer.user_class.to_s.underscore} ||= user_id && Bouncer.user_class.find_by_id(user_id)"
+      bouncer_current_user
     end
 
     define_method "#{Bouncer.user_class.to_s.underscore}_signed_in?".to_sym do
@@ -48,7 +47,12 @@ module Bouncer
     protected
 
     def bouncer_current_user
-      send("current_#{Bouncer.user_class.to_s.underscore}")
+      user_id = session[:bouncer_user_id]
+      eval "Current.#{Bouncer.user_class.to_s.underscore} ||= user_id && Bouncer.user_class.find_by_id(user_id)"
+    end
+
+    def bouncer_user_signed_in?
+      bouncer_current_user.present?
     end
   end
 end
