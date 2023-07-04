@@ -99,6 +99,7 @@ PATH
   specs:
     bouncer (0.1.0)
       omniauth-auth0 (~> 3.0)
+      omniauth-rails_csrf_protection (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -159,6 +160,9 @@ GEM
       omniauth-oauth2 (~> 1)
     omniauth-oauth2 (1.8.0)
       oauth2 (>= 1.4, < 3)
+      omniauth (~> 2.0)
+    omniauth-rails_csrf_protection (1.0.1)
+      actionpack (>= 4.2)
       omniauth (~> 2.0)
     puma (6.1.0)
       nio4r (~> 2.0)

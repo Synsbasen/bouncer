@@ -1,3 +1,5 @@
+require 'omniauth/rails_csrf_protection'
+
 module Bouncer
   class Engine < ::Rails::Engine
     isolate_namespace Bouncer
