@@ -50,5 +50,7 @@ end
 ## Contributing
 Feel free to submit a pull request. We have the ambition to support other providers than Auth0 as well.
 
+Build the gem by running `gem build bouncer.gemspec` in your console.
+
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
