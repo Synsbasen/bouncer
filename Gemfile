@@ -1,16 +1,16 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+ruby "3.4.10"
+
 # Specify your gem's dependencies in bouncer.gemspec.
 gemspec
 
-# Your gem is dependent on a prerelease version of Rails. Once you can lock this
-# dependency down to a specific version, move it to your gemspec.
-gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "8.1.3.1"
 
 gem "puma"
 
-gem "sqlite3"
+gem "sqlite3", ">= 2.1"
 
 gem "sprockets-rails"
 
