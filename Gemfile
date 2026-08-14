@@ -6,7 +6,7 @@ ruby "3.4.10"
 # Specify your gem's dependencies in bouncer.gemspec.
 gemspec
 
-gem "rails", "8.1.3.1"
+gem "rails"
 
 gem "puma"
 
